@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriele, PhD</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .track {
+            width: 600px;
+            height: 400px;
+            background: url('track.png') no-repeat center/contain;
+            margin: 20px auto;
+            position: relative;
+        }
+        .runner {
+            width: 50px;
+            position: absolute;
+            top: 75%;
+            left: 10%;
+            transform: translate(-50%, -50%);
+            transition: transform 1s ease-in-out;
+        }
+        .hint {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            background: #ffcc00;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .symbol {
+            position: absolute;
+            width: 40px;
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Segui la pista per scoprire la sorpresa!</h1>
+    <div class="track">
+        <img src="stickmanrunning.png" class="runner" id="runner">
+        <img src="diamond.png" class="symbol" id="symbol1" style="top: 10%; left: 80%;">
+        <img src="baguette.jpg" class="symbol" id="symbol2" style="top: 10%; left: 20%;">
+        <img src="calendar.jpg" class="symbol" id="symbol3" style="top: 80%; left: 20%;">
+        <img src="biglietti.jpg" class="symbol" id="symbol4" style="top: 80%; left: 80%;">
+    </div>
+    <div id="hint1" class="hint">💎 "Non si tratta solo di correre... ma di saltare, lanciare e spingersi oltre i propri limiti!"</div>
+    <div id="hint2" class="hint">🥖 "Questa città è un sogno per gli innamorati… e per gli appassionati di sport!"</div>
+    <div id="hint3" class="hint">📅 "In questo giorno, tieniti pronto: sarà una serata di emozioni e record!"</div>
+    <div id="hint4" class="hint">🎟️ "Traguardo raggiunto! Apri la busta e scopri la sorpresa!"</div>
+    <button onclick="moveRunner()">Avanza!</button>
+    
+    <script>
+        let step = 0;
+        const positions = [
+            { top: '10%', left: '80%' },
+            { top: '10%', left: '20%' },
+            { top: '80%', left: '20%' },
+            { top: '80%', left: '80%' }
+        ];
+        
+        function moveRunner() {
+            const runner = document.getElementById('runner');
+            const hints = [document.getElementById('hint1'), document.getElementById('hint2'), document.getElementById('hint3'), document.getElementById('hint4')];
+            const symbols = [document.getElementById('symbol1'), document.getElementById('symbol2'), document.getElementById('symbol3'), document.getElementById('symbol4')];
+            
+            if (step < positions.length) {
+                runner.style.top = positions[step].top;
+                runner.style.left = positions[step].left;
+                hints[step].style.display = 'block';
+                symbols[step].style.display = 'block';
+                step++;
+            }
+        }
+    </script>
+</body>
+</html>
